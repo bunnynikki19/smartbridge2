@@ -1,7 +1,7 @@
 /*
- * pwmmotor.c
+ * buttonspeed.c
  *
- * Created: 11-06-2019 11:32:00
+ * Created: 11-06-2019 14:04:44
  * Author : ganga
  */ 
 
@@ -16,15 +16,20 @@ void PWM_init()
 
 int main()
 {
+	DDRC|=(1<<PC0);
+	DDRD&=~(1<<PD0);
+	
 	unsigned char duty;
 	PWM_init();
 	while (1)
 	{
+		if((PIND&(1<<PD0))==0)
 		for(duty=0;duty<255;duty++)
 		{
-			OCR0=duty;
+			OCR0=150;
 			_delay_ms(8);
 		}
+		if((PIND&(1<<PD0))==0)
 		for(duty=255;duty>1;duty--)
 		{
 			OCR0=duty;

@@ -1,10 +1,9 @@
 /*
- * pwmmotor.c
+ * pwmop.c
  *
- * Created: 11-06-2019 11:32:00
+ * Created: 10-06-2019 14:12:57
  * Author : ganga
  */ 
-
 #define F_CPU 8000000UL
 #include <avr/io.h>
 # include <util/delay.h>
@@ -18,8 +17,8 @@ int main()
 {
 	unsigned char duty;
 	PWM_init();
-	while (1)
-	{
+    while (1) 
+    {
 		for(duty=0;duty<255;duty++)
 		{
 			OCR0=duty;
@@ -30,7 +29,6 @@ int main()
 			OCR0=duty;
 			_delay_ms(8);
 		}
-	}
+    }
 }
-
 
