@@ -1,23 +1,24 @@
 /*
- * sensorir.c
+ * relay.c
  *
- * Created: 11-06-2019 15:27:26
+ * Created: 11-06-2019 15:40:30
  * Author : ganga
  */ 
-#ifdef F_CPU
-#define  F_CPU 16000000UL
+#if defvF_CPU
+#define F_CPU 16000000UL
 #endif
 #include <avr/io.h>
+#include <util/delay.h>
 
-#define LED_OUTPUT PORTB
-#define  PIR_input PINC
 int main(void)
 {
-    DDRC=0X00;
-	DDRB=0XFF;
+	DDRD=0XFF;
+	DDRB=0X00;
     while (1) 
     {
-		LED_OUTPUT=PIR_input;
+		if((PINB& (1<<PB0))==0)
+		PORTD=0X01;
+		_delay_ms(500);
     }
 }
 
